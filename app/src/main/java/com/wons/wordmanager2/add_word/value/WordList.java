@@ -12,8 +12,25 @@ public class WordList {
     public String listName;
     public String wordCountInList;
 
-    public WordList(String listName, String wordCountInList) {
+    public WordList(String listName) {
         this.listName = listName;
-        this.wordCountInList = wordCountInList;
+        this.wordCountInList = "0";
+    }
+
+    public String getWordCountInList() {
+        return wordCountInList;
+    }
+
+    public void addWordCount() {
+        int count = Integer.parseInt(wordCountInList);
+        this.wordCountInList = String.valueOf(count++);
+    }
+    public void discount() {
+        int count = Integer.parseInt(wordCountInList);
+        if(count <= 0) {
+            wordCountInList = "0";
+            return;
+        }
+        this.wordCountInList = String.valueOf(count--);
     }
 }

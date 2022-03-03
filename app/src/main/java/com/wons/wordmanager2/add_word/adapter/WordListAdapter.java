@@ -8,13 +8,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wons.wordmanager2.R;
+import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
 import com.wons.wordmanager2.add_word.value.WordList;
 
 import java.util.ArrayList;
 
 public class WordListAdapter extends BaseAdapter {
     private ArrayList<WordList> wordLists;
-    WordListAdapter() {
+    private CallBackInAddWordForBoolean callback;
+    public WordListAdapter(CallBackInAddWordForBoolean callback) {
+        this.callback = callback;
         wordLists = new ArrayList<>();
     }
     @Override
@@ -43,10 +46,16 @@ public class WordListAdapter extends BaseAdapter {
         ImageView btn_delete = view.findViewById(R.id.btn_delete);
 
         tv_listName.setText(wordLists.get(i).listName);
-        tv_wordCountInList.setText(wordLists.get(i).wordCountInList);
-        if(Integer.parseInt(wordLists.get(i).wordCountInList) != 0) {
+        tv_wordCountInList.setText(wordLists.get(i).getWordCountInList());
+        if(Integer.parseInt(wordLists.get(i).getWordCountInList()) != 0) {
             view.findViewById(R.id.tv_infoList).setVisibility(View.GONE);
         }
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback.callBack(true, i);
+            }
+        });
         return view;
     }
 
