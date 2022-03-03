@@ -3,7 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_create_new_folder_24.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_folder_open_24.xml" value="0.225" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_keyboard_double_arrow_right_24.xml" value="0.225" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_text_increase_24.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.225" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/list_theme.xml" value="0.225" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/view_list_activity_theme.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_add_list.xml" value="0.264" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_game_list.xml" value="0.33288770053475936" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_study_list.xml" value="0.264" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_test_list.xml" value="0.264" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_game.xml" value="0.5750394944707741" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_word_folder.xml" value="0.536" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14583333333333334" />
       </map>
     </option>
   </component>

@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WordManager2">
         <activity
+            android:name=".game_word.GameListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".test_word.TestListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".study_word.StudyListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".add_word.AddListActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
