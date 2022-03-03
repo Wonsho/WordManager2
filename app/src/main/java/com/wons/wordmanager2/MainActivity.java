@@ -1,6 +1,8 @@
 package com.wons.wordmanager2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +16,16 @@ import com.wons.wordmanager2.test_word.TestListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel.dataBaseBuild(getApplicationContext());
         binding.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

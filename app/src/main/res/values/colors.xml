@@ -5,7 +5,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#1D1D1F</color>
     <color name="white">#FFFFFFFF</color>
     <color name="HighLights">#F2E8DC</color>
     <color name="Container">#FFFFFF</color>
@@ -13,4 +13,11 @@
     <color name="BackGround">#F9F9F9</color>
     <color name="line">#D9A74A</color>
     <color name="BackGround2">#D9A74A</color>
+    <color name="wordColorLow1">#FF5722</color>
+    <color name="wordColorLow2">#FF9800</color>
+    <color name="wordMiddle">#1D1D1F</color>
+    <color name="wordColorHigh1">#00BCD4</color>
+    <color name="wordColorHigh2">#3F51B5</color>
+    <color name="dialogBtn">#F0F0F0</color>
+
 </resources>
