@@ -18,6 +18,7 @@
     <color name="wordMiddle">#1D1D1F</color>
     <color name="wordColorHigh1">#00BCD4</color>
     <color name="wordColorHigh2">#3F51B5</color>
+    <color name="wordVeryLow">#B80000</color>
     <color name="dialogBtn">#F0F0F0</color>
 
 </resources>

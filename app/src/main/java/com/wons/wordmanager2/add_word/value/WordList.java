@@ -10,7 +10,7 @@ public class WordList {
     @NonNull
     public int listId;
     public String listName;
-    public String wordCountInList;
+    private String wordCountInList;
 
     public WordList(String listName) {
         this.listName = listName;
@@ -23,7 +23,7 @@ public class WordList {
 
     public void addWordCount() {
         int count = Integer.parseInt(wordCountInList);
-        this.wordCountInList = String.valueOf(count++);
+        this.wordCountInList = String.valueOf(count+1);
     }
     public void discount() {
         int count = Integer.parseInt(wordCountInList);
@@ -31,6 +31,10 @@ public class WordList {
             wordCountInList = "0";
             return;
         }
-        this.wordCountInList = String.valueOf(count--);
+        this.wordCountInList = String.valueOf(count-1);
+    }
+
+    public void setWordCountInList(String wordCountInList) {
+        this.wordCountInList = wordCountInList;
     }
 }

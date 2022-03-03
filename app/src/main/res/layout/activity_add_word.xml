@@ -85,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
             <TextView
+                android:id="@+id/tv_infoList"
                 android:textSize="20sp"
                 android:text="단어를 추가해 주세요!"
                 android:gravity="center"

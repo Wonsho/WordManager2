@@ -25,12 +25,12 @@ public class Word {
         this.testedCount = testedCount;
     }
 
-    public Word(String english, String korean, int listName) {
+    public Word(String english, String korean, int listCode) {
         correctCount = "0";
         testedCount = "0";
         this.english = english;
         this.korean = korean;
-        this.listCode = listName;
+        this.listCode = listCode;
     }
 
     public int getPercentage_of_correct() {

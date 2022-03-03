@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class WordAdapter extends BaseAdapter {
     private ArrayList<Word> words;
 
-    WordAdapter(/*콜백받기*/) {
+    public WordAdapter(/*콜백받기*/) {
         this.words = new ArrayList<>();
     }
 
@@ -45,16 +45,19 @@ public class WordAdapter extends BaseAdapter {
         }
         TextView tv_english = view.findViewById(R.id.tv_english);
         TextView tv_korean = view.findViewById(R.id.tv_korean);
+        TextView tv_mark = view.findViewById(R.id.tv_percentM);
         ImageView btn_sound = view.findViewById(R.id.btn_sound);
         ImageView btn_delete = view.findViewById(R.id.btn_delete);
         TextView tv_correctPercentage = view.findViewById(R.id.tv_correctPercentage);
         tv_english.setText(words.get(i).english);
         tv_korean.setText(words.get(i).korean);
-        if (words.get(i).getPercentage_of_correct() != 0) {
+        if (Integer.parseInt(words.get(i).getTestedCount()) != 0) {
             int percent = words.get(i).getPercentage_of_correct();
-            if (percent >= 0 && percent <= 20) {
+            if(percent >= 0 && percent <= 10) {
+                tv_correctPercentage.setTextColor(Color.parseColor("#B80000"));
+            } else if (percent > 10 && percent <= 30) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#FF5722"));
-            } else if (percent > 20 && percent <= 40) {
+            } else if (percent > 30 && percent <= 40) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#FF9800"));
             } else if (percent > 40 && percent <= 60) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#1D1D1F"));
@@ -63,9 +66,14 @@ public class WordAdapter extends BaseAdapter {
             } else {
                 tv_correctPercentage.setTextColor(Color.parseColor("#3F51B5"));
             }
+            tv_mark.setVisibility(View.VISIBLE);
+            tv_correctPercentage.setText(String.valueOf(words.get(i).getPercentage_of_correct()));
+        } else {
+            tv_correctPercentage.setText("측정 불가");
+            tv_mark.setVisibility(View.GONE);
         }
         //todo 온클릭 리스너 달아주기
-        tv_correctPercentage.setText(String.valueOf(words.get(i).getPercentage_of_correct()));
+
         return view;
     }
 
