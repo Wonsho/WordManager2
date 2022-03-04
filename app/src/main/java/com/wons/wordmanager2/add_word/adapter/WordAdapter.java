@@ -56,22 +56,12 @@ public class WordAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.list_view_word, viewGroup, false);
         }
         TextView tv_english = view.findViewById(R.id.tv_english);
-        TextView tv_korean = view.findViewById(R.id.tv_korean);
         TextView tv_mark = view.findViewById(R.id.tv_percentM);
         ImageView btn_sound = view.findViewById(R.id.btn_sound);
         ImageView btn_delete = view.findViewById(R.id.btn_delete);
         TextView tv_correctPercentage = view.findViewById(R.id.tv_correctPercentage);
         tv_english.setText(wordEnglishes.get(i).english);
-        String korean = koreanMap.get(wordEnglishes.get(i).english);
-        String[] koreans = korean.split(",");
-        for(int j = 0 ; j<koreans.length ; j++) {
-            if (j == 0) {
-                tv_korean.setText("1. "+koreans[j].trim());
-            } else {
-                String str = tv_korean.getText().toString();
-                tv_korean.setText(str+"\n"+String.valueOf(j+1)+". "+koreans[j].trim());
-            }
-        }
+
         btn_sound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

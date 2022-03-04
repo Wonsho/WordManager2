@@ -9,19 +9,23 @@ public class WordInfoByEnglish {
     @PrimaryKey
     @NonNull
     public String word_english;
-    public String word_korean;
+    public String word_korean_ILBAN;
+    public String word_korean_MYUNGSA;
+    public String word_korean_DONGSA;
+    public String word_korean_BUSA;
+    public String word_korean_JODONGSA;
+    public String word_korean_HYNGYUNGSA;
+
     private String correctCount;
     private String testedCount;
 
-    public WordInfoByEnglish(String word_english, String word_korean) {
-        this.word_english = word_english;
-
-        if (word_korean.contains("형)") || word_korean.contains("명)") || word_korean.contains("부)")) {
-            String[] arr1 = word_korean.split(",");
-        } else {
-            String[] arr2 = word_korean.split(",");
-        }
-        this.word_korean = word_korean;
+    public WordInfoByEnglish(String word_english, String word_korean_ILBAN , String word_korean_DONGSA, String word_korean_BUSA, String word_korean_MYUNGSA, String word_korean_HYNGYUNGSA, String word_korean_JODONGSA) {
+        this.word_korean_ILBAN = word_korean_ILBAN;
+        this.word_korean_MYUNGSA = word_korean_MYUNGSA;
+        this.word_korean_HYNGYUNGSA = word_korean_HYNGYUNGSA;
+        this.word_korean_BUSA = word_korean_BUSA;
+        this.word_korean_DONGSA = word_korean_DONGSA;
+        this.word_korean_JODONGSA = word_korean_JODONGSA;
         correctCount = "0";
         testedCount = "0";
     }

@@ -118,6 +118,7 @@ public class DialogsInAddWord {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_add_word_list, null);
         EditText et_listName = view.findViewById(R.id.et_listName);
         builder.setView(view);
+
         builder.setPositiveButton("추가", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

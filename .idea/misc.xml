@@ -15,6 +15,7 @@
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_text_increase_24.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_volume_up_24.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.225" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/index_theme.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/list_theme.xml" value="0.225" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/view_list_activity_theme.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_add_list.xml" value="0.264" />
@@ -27,6 +28,7 @@
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_add_word_list.xml" value="0.4" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_no.xml" value="0.4" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_yes.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_in_word_list.xml" value="0.536" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_game.xml" value="0.5750394944707741" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_word.xml" value="0.6" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_word_folder.xml" value="0.536" />
