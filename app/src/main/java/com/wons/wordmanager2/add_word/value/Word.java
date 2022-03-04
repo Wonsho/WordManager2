@@ -11,6 +11,7 @@ public class Word {
     public int wordId;
     public String english;
     public String korean;
+    public String containListName; // todo 포함하는 리스트 코드를 스트링 형태로 가지고 있음 ==> ex) "1,2"
     public int listCode;
     private String correctCount;
     private String testedCount;

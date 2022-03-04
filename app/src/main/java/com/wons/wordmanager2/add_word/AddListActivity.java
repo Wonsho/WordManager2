@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.wons.wordmanager2.R;
 import com.wons.wordmanager2.add_word.adapter.WordListAdapter;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWord;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
@@ -25,14 +24,14 @@ import java.util.HashMap;
 
 public class AddListActivity extends AppCompatActivity {
     private ActivityAddListBinding binding;
-    private AddWordListViewModel viewModel;
+    private AddWordList_ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAddListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        viewModel = new ViewModelProvider(this).get(AddWordListViewModel.class);
+        viewModel = new ViewModelProvider(this).get(AddWordList_ViewModel.class);
         onC();
         setView();
         getData();
@@ -90,7 +89,7 @@ public class AddListActivity extends AppCompatActivity {
             binding.lv.setAdapter(new WordListAdapter(new CallBackInAddWordForBoolean() {
                 @Override
                 public void callBack(Boolean check, int index1) {
-                    AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddListActivity.this, ((WordListAdapter) binding.lv.getAdapter()).getItem(index1).listName, new CallBackInAddWordForBoolean() {
+                    AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddListActivity.this,  new CallBackInAddWordForBoolean() {
                         @Override
                         public void callBack(Boolean check, int index) {
                             if (check) {
@@ -100,6 +99,7 @@ public class AddListActivity extends AppCompatActivity {
                             }
                         }
                     });
+                    alertDialog.setMessage(((WordListAdapter) binding.lv.getAdapter()).getItem(index1).listName + " 단어장을 삭제하시겠습니까? \n단어장에 저장된 단어는 복구 할 수 없습니다");
                     alertDialog.show();
                 }
             }));

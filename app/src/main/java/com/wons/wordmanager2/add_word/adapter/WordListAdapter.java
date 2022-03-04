@@ -49,6 +49,8 @@ public class WordListAdapter extends BaseAdapter {
         tv_wordCountInList.setText(wordLists.get(i).getWordCountInList());
         if(Integer.parseInt(wordLists.get(i).getWordCountInList()) != 0) {
             view.findViewById(R.id.tv_infoList).setVisibility(View.GONE);
+        } else {
+            view.findViewById(R.id.tv_infoList).setVisibility(View.VISIBLE);
         }
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override

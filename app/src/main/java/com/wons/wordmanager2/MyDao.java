@@ -35,6 +35,8 @@ public interface MyDao{
     WordList getWordListByListName(String listName);
     @Query("SELECT * FROM word WHERE listCode = :listCode")
     Word[] getWordsByListCode(int listCode);
+    @Query("SELECT * FROM word WHERE english = :english")
+    Word[] getSameWord(String english);
 
 
 }

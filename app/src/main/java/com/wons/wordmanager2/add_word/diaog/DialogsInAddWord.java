@@ -38,21 +38,27 @@ public class DialogsInAddWord {
                     String english = et_english.getText().toString().trim();
                     char[] chars = english.toCharArray();
                     for (char m : chars) {
-                        if (!(((m >= 97 && m <= 122) || (m >= 65 && m <= 90)) || m == 32)) { // 97~ 122, 65 ~ 90
+                        if(m == 32) {
+                            Toast.makeText(context, "띄어쓰기는 포함 하실수 없습니다", Toast.LENGTH_LONG).show();
+                            getDialogForAddWord(context, callBackInAddWord).show();
+                            return;
+                        }
+                        if (!((m >= 97 && m <= 122) || (m >= 65 && m <= 90))) { // 97~ 122, 65 ~ 90
                             Toast.makeText(context, "영어를 제대로 적어주세요", Toast.LENGTH_SHORT).show();
                             getDialogForAddWord(context, callBackInAddWord).show();
                             return;
                         }
                         if(et_english.getText().toString().trim().equals(et_korean.getText().toString().trim())) {
-                            Toast.makeText(context, "영어 단어와 단어의 뜻을 똑같이 적을 수 없습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "영어 단어와 단어의 뜻을 똑같이 적을 수 없습니다.", Toast.LENGTH_LONG).show();
                             getDialogForAddWord(context, callBackInAddWord).show();
                             return;
                         }
-                        HashMap<CallBackKey, String> map = new HashMap<>();
-                        map.put(CallBackKey.ENGLISH, et_english.getText().toString().trim());
-                        map.put(CallBackKey.KOREAN, et_korean.getText().toString().trim());
-                        callBackInAddWord.callBack(map);
+
                     }
+                    HashMap<CallBackKey, String> map = new HashMap<>();
+                    map.put(CallBackKey.ENGLISH, et_english.getText().toString().trim());
+                    map.put(CallBackKey.KOREAN, et_korean.getText().toString().trim());
+                    callBackInAddWord.callBack(map);
                 } else {
                     Toast.makeText(context, "항목을 제대로 적어주세요", Toast.LENGTH_SHORT).show();
                     getDialogForAddWord(context, callBackInAddWord).show();
@@ -92,10 +98,9 @@ public class DialogsInAddWord {
         return builder.create();
     }
 
-    public AlertDialog dialogForDelete(Context context, String listName, CallBackInAddWordForBoolean callBack) {
+    public AlertDialog dialogForDelete(Context context,CallBackInAddWordForBoolean callBack) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("삭제");
-        builder.setMessage(listName + " 단어장을 삭제하시겠습니까?\n단어장안에 있는 단어는 복구할 수 없습니다");
         builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -105,7 +110,6 @@ public class DialogsInAddWord {
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         });
        return builder.create();

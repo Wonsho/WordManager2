@@ -1,23 +1,34 @@
 package com.wons.wordmanager2.add_word.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wons.wordmanager2.R;
+import com.wons.wordmanager2.add_word.diaog.CallBackInAddWord;
+import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
+import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForString;
 import com.wons.wordmanager2.add_word.value.Word;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class WordAdapter extends BaseAdapter {
     private ArrayList<Word> words;
+    private CallBackInAddWordForString callBackInAddWordForString;
+    private CallBackInAddWordForBoolean callBackInAddWordForBoolean;
 
-    public WordAdapter(/*콜백받기*/) {
+    public WordAdapter(CallBackInAddWordForString callBackInAddWordForString, CallBackInAddWordForBoolean callBackInAddWordForBoolean) {
+        this.callBackInAddWordForBoolean = callBackInAddWordForBoolean;
+        this.callBackInAddWordForString = callBackInAddWordForString;
         this.words = new ArrayList<>();
     }
 
@@ -51,9 +62,21 @@ public class WordAdapter extends BaseAdapter {
         TextView tv_correctPercentage = view.findViewById(R.id.tv_correctPercentage);
         tv_english.setText(words.get(i).english);
         tv_korean.setText(words.get(i).korean);
+        btn_sound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callBackInAddWordForString.callBack(tv_english.getText().toString().trim());
+            }
+        });
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callBackInAddWordForBoolean.callBack(true, i);
+            }
+        });
         if (Integer.parseInt(words.get(i).getTestedCount()) != 0) {
             int percent = words.get(i).getPercentage_of_correct();
-            if(percent >= 0 && percent <= 10) {
+            if (percent >= 0 && percent <= 10) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#B80000"));
             } else if (percent > 10 && percent <= 30) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#FF5722"));

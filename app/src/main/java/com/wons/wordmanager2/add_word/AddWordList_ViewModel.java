@@ -10,7 +10,7 @@ import com.wons.wordmanager2.add_word.value.WordList;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AddWordListViewModel extends ViewModel {
+public class AddWordList_ViewModel extends ViewModel {
    private MyDao myDao = MainViewModel.myDao;
 
    public ArrayList<WordList> getAllList() {

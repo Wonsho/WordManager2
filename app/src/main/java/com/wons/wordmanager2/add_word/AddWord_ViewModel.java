@@ -12,7 +12,7 @@ import com.wons.wordmanager2.add_word.value.WordList;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AddWordViewModel extends ViewModel {
+public class AddWord_ViewModel extends ViewModel {
    private MyDao myDao = MainViewModel.myDao;
 
    public void deleteWord(Word word) {
@@ -40,5 +40,9 @@ public class AddWordViewModel extends ViewModel {
 
    public int getListCode(String listName) {
       return myDao.getWordListByListName(listName).listId;
+   }
+
+   public ArrayList<Word> getAllWord_inDB(String wordEnglish) {
+      return new ArrayList<Word>(Arrays.asList(myDao.getSameWord(wordEnglish)));
    }
 }
