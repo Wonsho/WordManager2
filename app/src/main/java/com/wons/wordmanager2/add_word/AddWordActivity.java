@@ -68,8 +68,8 @@ public class AddWordActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        ArrayList<Word> words = viewModel.getAllWords(binding.tvListName.getText().toString().trim());
-        ((WordAdapter)binding.lv.getAdapter()).setWords(words);
+        ArrayList<Word> words = viewModel.getAllWordsInList(binding.tvListName.getText().toString().trim());
+        ((WordAdapter)binding.lv.getAdapter()).setWords(words, viewModel.getWordPercentageMap(words));
         if(words.size() != 0) {
             binding.tvInfoList.setVisibility(View.GONE);
             binding.lv.setVisibility(View.VISIBLE);

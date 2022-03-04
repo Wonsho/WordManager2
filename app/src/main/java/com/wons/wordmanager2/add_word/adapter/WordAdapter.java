@@ -1,5 +1,6 @@
 package com.wons.wordmanager2.add_word.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -19,10 +20,13 @@ import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForString;
 import com.wons.wordmanager2.add_word.value.Word;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class WordAdapter extends BaseAdapter {
     private ArrayList<Word> words;
+    private HashMap<String, String> wordsPercentage; // todo 키값 : word의 english
     private CallBackInAddWordForString callBackInAddWordForString;
     private CallBackInAddWordForBoolean callBackInAddWordForBoolean;
 
@@ -30,6 +34,7 @@ public class WordAdapter extends BaseAdapter {
         this.callBackInAddWordForBoolean = callBackInAddWordForBoolean;
         this.callBackInAddWordForString = callBackInAddWordForString;
         this.words = new ArrayList<>();
+        this.wordsPercentage = new HashMap<>();
     }
 
     @Override
@@ -47,6 +52,7 @@ public class WordAdapter extends BaseAdapter {
         return i;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         Context context = viewGroup.getContext();
@@ -61,7 +67,16 @@ public class WordAdapter extends BaseAdapter {
         ImageView btn_delete = view.findViewById(R.id.btn_delete);
         TextView tv_correctPercentage = view.findViewById(R.id.tv_correctPercentage);
         tv_english.setText(words.get(i).english);
-        tv_korean.setText(words.get(i).korean);
+        String korean = words.get(i).korean;
+        String[] koreans = korean.split(",");
+        for(int j = 0 ; j<koreans.length ; j++) {
+            if (j == 0) {
+                tv_korean.setText("1. "+koreans[j].trim());
+            } else {
+                String str = tv_korean.getText().toString();
+                tv_korean.setText(str+"\n"+String.valueOf(j+1)+". "+koreans[j].trim());
+            }
+        }
         btn_sound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,23 +89,23 @@ public class WordAdapter extends BaseAdapter {
                 callBackInAddWordForBoolean.callBack(true, i);
             }
         });
-        if (Integer.parseInt(words.get(i).getTestedCount()) != 0) {
-            int percent = words.get(i).getPercentage_of_correct();
-            if (percent >= 0 && percent <= 10) {
+        int percentage = Integer.parseInt(wordsPercentage.get(words.get(i).english));
+        if (percentage != 0) {
+            if (percentage >= 0 && percentage <= 10) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#B80000"));
-            } else if (percent > 10 && percent <= 30) {
+            } else if (percentage > 10 && percentage <= 30) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#FF5722"));
-            } else if (percent > 30 && percent <= 40) {
+            } else if (percentage > 30 && percentage <= 40) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#FF9800"));
-            } else if (percent > 40 && percent <= 60) {
+            } else if (percentage > 40 && percentage <= 60) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#1D1D1F"));
-            } else if (percent > 60 && percent <= 80) {
+            } else if (percentage > 60 && percentage <= 80) {
                 tv_correctPercentage.setTextColor(Color.parseColor("#00BCD4"));
             } else {
                 tv_correctPercentage.setTextColor(Color.parseColor("#3F51B5"));
             }
             tv_mark.setVisibility(View.VISIBLE);
-            tv_correctPercentage.setText(String.valueOf(words.get(i).getPercentage_of_correct()));
+            tv_correctPercentage.setText(String.valueOf(percentage));
         } else {
             tv_correctPercentage.setText("측정 불가");
             tv_mark.setVisibility(View.GONE);
@@ -100,7 +115,8 @@ public class WordAdapter extends BaseAdapter {
         return view;
     }
 
-    public void setWords(ArrayList<Word> words) {
+    public void setWords(ArrayList<Word> words, HashMap<String, String> wordsPercentageMap) {
         this.words = words;
+        this.wordsPercentage = wordsPercentageMap;
     }
 }

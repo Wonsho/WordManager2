@@ -19,6 +19,7 @@ public class AddWordList_ViewModel extends ViewModel {
    public void deleteWordList(WordList wordList) {
        ArrayList<Word> words = new ArrayList<>(Arrays.asList(myDao.getWordsByListCode(wordList.listId)));
        for(Word word : words) {
+           deleteWordPercentage(word);
            myDao.deleteWord(word);
        }
        myDao.deleteWordList(wordList);
@@ -33,4 +34,12 @@ public class AddWordList_ViewModel extends ViewModel {
        }
        return false;
    }
+
+    private void deleteWordPercentage(Word word) {
+        if(myDao.getSameWord(word.english).length == 1) {
+            myDao.deleteWordPercentage(myDao.getPercentageOfWord(word.english));
+        } else {
+            return;
+        }
+    }
 }

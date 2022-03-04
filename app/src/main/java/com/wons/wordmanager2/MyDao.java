@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import com.wons.wordmanager2.add_word.value.Word;
 import com.wons.wordmanager2.add_word.value.WordList;
+import com.wons.wordmanager2.add_word.value.WordPercentageOfCorrect;
 
 @Dao
 public interface MyDao{
@@ -15,13 +16,19 @@ public interface MyDao{
     void insertWord(Word word);
     @Insert
     void insertWordList(WordList wordList);
+    @Insert
+    void insertWordPercentage(WordPercentageOfCorrect percentageOfCorrect);
 
     @Delete
     void deleteWord(Word word);
 
     @Delete
     void deleteWordList(WordList wordList);
+    @Delete
+    void deleteWordPercentage(WordPercentageOfCorrect percentageOfCorrect);
 
+    @Update
+    void updateWordPercentage(WordPercentageOfCorrect percentageOfCorrect);
     @Update
     void upDateWord(Word word);
     @Update
@@ -37,6 +44,7 @@ public interface MyDao{
     Word[] getWordsByListCode(int listCode);
     @Query("SELECT * FROM word WHERE english = :english")
     Word[] getSameWord(String english);
-
+    @Query("SELECT * FROM WordPercentageOfCorrect WHERE word_english = :word_english")
+    WordPercentageOfCorrect getPercentageOfWord(String word_english);
 
 }

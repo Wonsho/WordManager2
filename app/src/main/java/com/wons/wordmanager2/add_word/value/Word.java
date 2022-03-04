@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+
 @Entity
 public class Word {
     @PrimaryKey(autoGenerate = true)
@@ -11,49 +13,13 @@ public class Word {
     public int wordId;
     public String english;
     public String korean;
-    public String containListName; // todo 포함하는 리스트 코드를 스트링 형태로 가지고 있음 ==> ex) "1,2"
     public int listCode;
-    private String correctCount;
-    private String testedCount;
 
     public Word() {}
 
-    public void setCorrectCount(String correctCount) {
-        this.correctCount = correctCount;
-    }
-
-    public void setTestedCount(String testedCount) {
-        this.testedCount = testedCount;
-    }
-
     public Word(String english, String korean, int listCode) {
-        correctCount = "0";
-        testedCount = "0";
         this.english = english;
         this.korean = korean;
         this.listCode = listCode;
     }
-
-    public int getPercentage_of_correct() {
-        double correctTimes = Double.parseDouble(correctCount);
-        double testedTimes = Double.parseDouble(testedCount);
-        return ((int)(correctTimes/testedTimes * 100));
-    }
-
-    public void addCorrectCount() {
-        correctCount = String.valueOf(Integer.parseInt(correctCount)+1);
-    }
-
-    public void addTestedCount() {
-        testedCount = String.valueOf(Integer.parseInt(testedCount)+1);
-    }
-
-    public String getTestedCount() {
-        return testedCount;
-    }
-
-    public String getCorrectCount() {
-        return correctCount;
-    }
-
 }
