@@ -7,14 +7,16 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Toast;
 
+import com.wons.wordmanager2.R;
 import com.wons.wordmanager2.add_word.adapter.WordAdapter;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWord;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForString;
 import com.wons.wordmanager2.add_word.diaog.CallBackKey;
 import com.wons.wordmanager2.add_word.diaog.DialogsInAddWord;
-import com.wons.wordmanager2.add_word.value.Word;
+import com.wons.wordmanager2.add_word.value.WordEnglish;
 import com.wons.wordmanager2.databinding.ActivityAddWordBinding;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class AddWordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddWordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        overridePendingTransition(R.anim.vertical_enter,R.anim.non);
         binding.tvListName.setText(getIntent().getStringExtra("listName"));
         viewModel = new ViewModelProvider(this).get(AddWord_ViewModel.class);
         tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
@@ -52,25 +55,32 @@ public class AddWordActivity extends AppCompatActivity {
                 AlertDialog alertDialog = new DialogsInAddWord().getDialogForAddWord(AddWordActivity.this, new CallBackInAddWord() {
                     @Override
                     public void callBack(HashMap<CallBackKey, String> callback) {
-                        Word word = new Word(callback.get(CallBackKey.ENGLISH), callback.get(CallBackKey.KOREAN),viewModel.getListCode(binding.tvListName.getText().toString().trim()));
-                        if(viewModel.getAllWord_inDB(word.english).size() == 0) {
-                            viewModel.insertWord(word);
+                        WordEnglish wordEnglish = new WordEnglish(callback.get(CallBackKey.ENGLISH).trim(), viewModel.getListCode(getIntent().getStringExtra("listName")));
+                        if(!viewModel.isCheckSameWordInList(viewModel.getListCode(getIntent().getStringExtra("listName")), callback.get(CallBackKey.ENGLISH))) {  // todo 리스트안에 중복으로 바꿈!
+                            viewModel.insertWord(wordEnglish, callback.get(CallBackKey.KOREAN).trim());
                             getData();
                         }  else {
-//                            AlertDialog alertDialog1 = new DialogsInAddWord()
+                            Toast.makeText(getApplicationContext(), "중복되는 단어가 리스트에 존재합니다", Toast.LENGTH_LONG).show();
+                            return;
                         }
-
                     }
                 });
                 alertDialog.show();
             }
         });
+
+        binding.mv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void getData() {
-        ArrayList<Word> words = viewModel.getAllWordsInList(binding.tvListName.getText().toString().trim());
-        ((WordAdapter)binding.lv.getAdapter()).setWords(words, viewModel.getWordPercentageMap(words));
-        if(words.size() != 0) {
+        ArrayList<WordEnglish> wordEnglishes = viewModel.getAllWordsInList(binding.tvListName.getText().toString().trim());
+        ((WordAdapter)binding.lv.getAdapter()).setWords(wordEnglishes, viewModel.getWordPercentageMap(wordEnglishes), viewModel.getWordKorean(wordEnglishes));
+        if(wordEnglishes.size() != 0) {
             binding.tvInfoList.setVisibility(View.GONE);
             binding.lv.setVisibility(View.VISIBLE);
         } else {
@@ -96,6 +106,7 @@ public class AddWordActivity extends AppCompatActivity {
                             public void callBack(Boolean check, int index) {
                                 if(check) {
                                     viewModel.deleteWord(((WordAdapter)binding.lv.getAdapter()).getItem(indexOfValue));
+                                    Toast.makeText(getApplicationContext(), "삭제되었습니다", Toast.LENGTH_SHORT).show();
                                     getData();
                                 }
                             }
@@ -107,5 +118,11 @@ public class AddWordActivity extends AppCompatActivity {
             }));
         }
         ((WordAdapter)binding.lv.getAdapter()).notifyDataSetChanged();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.non,R.anim.vertical_exit);
     }
 }

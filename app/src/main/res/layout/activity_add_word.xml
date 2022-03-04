@@ -23,11 +23,15 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:id="@+id/mv"
                     android:src="@drawable/ic_baseline_expand_circle_down_24"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginBottom="10dp"
+                    android:padding="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -58,7 +62,7 @@
                     <ImageView
                         android:clickable="true"
                         android:focusable="true"
-                        android:background="?attr/selectableItemBackground"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:id="@+id/btn_addList"
                         android:paddingLeft="5dp"
                         android:paddingBottom="5dp"
@@ -80,6 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
             <ListView
+                android:dividerHeight="0px"
+                android:divider="#FFFFFF"
                 android:visibility="gone"
                 android:layout_margin="5dp"
                 android:id="@+id/lv"

@@ -5,15 +5,23 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class WordPercentageOfCorrect {
+public class WordInfoByEnglish {
     @PrimaryKey
     @NonNull
     public String word_english;
+    public String word_korean;
     private String correctCount;
     private String testedCount;
 
-    public WordPercentageOfCorrect(String word_english) {
+    public WordInfoByEnglish(String word_english, String word_korean) {
         this.word_english = word_english;
+
+        if (word_korean.contains("형)") || word_korean.contains("명)") || word_korean.contains("부)")) {
+            String[] arr1 = word_korean.split(",");
+        } else {
+            String[] arr2 = word_korean.split(",");
+        }
+        this.word_korean = word_korean;
         correctCount = "0";
         testedCount = "0";
     }
@@ -47,8 +55,4 @@ public class WordPercentageOfCorrect {
     public String getCorrectCount() {
         return correctCount;
     }
-
-
-
-
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.wons.wordmanager2.MainViewModel;
 import com.wons.wordmanager2.MyDao;
-import com.wons.wordmanager2.add_word.value.Word;
+import com.wons.wordmanager2.add_word.value.WordEnglish;
 import com.wons.wordmanager2.add_word.value.WordList;
 
 import java.util.ArrayList;
@@ -17,10 +17,10 @@ public class AddWordList_ViewModel extends ViewModel {
        return new ArrayList<>(Arrays.asList(myDao.getAllWordList()));
    }
    public void deleteWordList(WordList wordList) {
-       ArrayList<Word> words = new ArrayList<>(Arrays.asList(myDao.getWordsByListCode(wordList.listId)));
-       for(Word word : words) {
-           deleteWordPercentage(word);
-           myDao.deleteWord(word);
+       ArrayList<WordEnglish> wordEnglishes = new ArrayList<>(Arrays.asList(myDao.getWordsByListCode(wordList.listId)));
+       for(WordEnglish wordEnglish : wordEnglishes) {
+           deleteWordPercentage(wordEnglish);
+           myDao.deleteWord(wordEnglish);
        }
        myDao.deleteWordList(wordList);
    }
@@ -35,9 +35,9 @@ public class AddWordList_ViewModel extends ViewModel {
        return false;
    }
 
-    private void deleteWordPercentage(Word word) {
-        if(myDao.getSameWord(word.english).length == 1) {
-            myDao.deleteWordPercentage(myDao.getPercentageOfWord(word.english));
+    private void deleteWordPercentage(WordEnglish wordEnglish) {
+        if(myDao.getSameWord(wordEnglish.english).length == 1) {
+            myDao.deleteWordPercentage(myDao.getPercentageOfWord(wordEnglish.english));
         } else {
             return;
         }

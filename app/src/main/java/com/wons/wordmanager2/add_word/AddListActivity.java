@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.wons.wordmanager2.R;
 import com.wons.wordmanager2.add_word.adapter.WordListAdapter;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWord;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
@@ -66,6 +67,7 @@ public class AddListActivity extends AppCompatActivity {
                 intent.putExtra("listName",((WordListAdapter) binding.lv.getAdapter()).getItem(i).listName);
                 Log.e("clickLv", String.valueOf(i));
                 startActivity(intent);
+
             }
         });
 

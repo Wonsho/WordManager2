@@ -7,19 +7,16 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 
 @Entity
-public class Word {
+public class WordEnglish {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     public int wordId;
     public String english;
-    public String korean;
     public int listCode;
 
-    public Word() {}
-
-    public Word(String english, String korean, int listCode) {
+    public WordEnglish(String english, int listCode) {
         this.english = english;
-        this.korean = korean;
         this.listCode = listCode;
+
     }
 }
