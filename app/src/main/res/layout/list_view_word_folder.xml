@@ -76,6 +76,41 @@
             android:text=")"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/btn_searchWord"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_line"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_baseline_event_note_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/im_q"
+            android:visibility="gone"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_searchWord"
+            app:layout_constraintLeft_toLeftOf="@id/btn_searchWord"
+            app:layout_constraintTop_toTopOf="@id/btn_searchWord"
+            android:layout_marginLeft="18dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_baseline_question_mark_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
         <TextView
             android:layout_marginRight="10dp"
             android:id="@+id/tv_infoList"

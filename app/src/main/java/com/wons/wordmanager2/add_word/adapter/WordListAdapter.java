@@ -16,8 +16,10 @@ import java.util.ArrayList;
 public class WordListAdapter extends BaseAdapter {
     private ArrayList<WordList> wordLists;
     private CallBackInAddWordForIndex callback;
-    public WordListAdapter(CallBackInAddWordForIndex callback) {
+    private CallBackInAddWordForIndex callback2;
+    public WordListAdapter(CallBackInAddWordForIndex callback,CallBackInAddWordForIndex callback2) {
         this.callback = callback;
+        this.callback2 = callback2;
         wordLists = new ArrayList<>();
     }
     @Override
@@ -44,18 +46,30 @@ public class WordListAdapter extends BaseAdapter {
         TextView tv_listName = view.findViewById(R.id.tv_listName);
         TextView tv_wordCountInList = view.findViewById(R.id.tv_wordCount);
         ImageView btn_delete = view.findViewById(R.id.btn_delete);
+        ImageView btn_info = view.findViewById(R.id.btn_searchWord);
+        ImageView tv = view.findViewById(R.id.im_q);
 
         tv_listName.setText(wordLists.get(i).listName);
         tv_wordCountInList.setText(wordLists.get(i).getWordCountInList());
         if(Integer.parseInt(wordLists.get(i).getWordCountInList()) != 0) {
             view.findViewById(R.id.tv_infoList).setVisibility(View.GONE);
+            btn_info.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.VISIBLE);
         } else {
             view.findViewById(R.id.tv_infoList).setVisibility(View.VISIBLE);
+            btn_info.setVisibility(View.GONE);
+            tv.setVisibility(View.GONE);
         }
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callback.callBack(true, i);
+            }
+        });
+        btn_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callback2.callBack(true, i);
             }
         });
         return view;

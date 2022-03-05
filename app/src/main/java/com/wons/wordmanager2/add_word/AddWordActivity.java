@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -11,12 +13,14 @@ import android.widget.Toast;
 
 import com.wons.wordmanager2.R;
 import com.wons.wordmanager2.add_word.adapter.WordAdapter;
+import com.wons.wordmanager2.add_word.diaog.CallBackCheck;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWord;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForIndex;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForString;
 import com.wons.wordmanager2.add_word.diaog.CallBackKey;
 import com.wons.wordmanager2.add_word.diaog.DialogsInAddWord;
 import com.wons.wordmanager2.add_word.value.WordEnglish;
+import com.wons.wordmanager2.add_word.wordinfo.WordExplainActivity;
 import com.wons.wordmanager2.databinding.ActivityAddWordBinding;
 
 import java.util.ArrayList;
@@ -56,11 +60,37 @@ public class AddWordActivity extends AppCompatActivity {
                     @Override
                     public void callBack(HashMap<CallBackKey, String> callback) {
                         WordEnglish wordEnglish = new WordEnglish(callback.get(CallBackKey.ENGLISH).trim(), viewModel.getListCode(getIntent().getStringExtra("listName")));
-                        if(!viewModel.isCheckSameWordInList(viewModel.getListCode(getIntent().getStringExtra("listName")), callback.get(CallBackKey.ENGLISH))) {  // todo 리스트안에 중복으로 바꿈!
-                            viewModel.insertWord(wordEnglish, callback.get(CallBackKey.KOREAN).trim());
-                            getData();
+                        if(!viewModel.isCheckSameWordInList(viewModel.getListCode(getIntent().getStringExtra("listName")), callback.get(CallBackKey.ENGLISH))) {
+                            ArrayList<String> listNameOfHadSameWord = viewModel.checkSameWordImDB(wordEnglish.english);
+                            if(listNameOfHadSameWord.size() != 0) {
+                                // todo 다이로그 띄우기
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AddWordActivity.this);
+                                StringBuilder lists = new StringBuilder("다음과 같은 단어장에 같은 단어가 있습니다.\n그래도 추가 하시겠습니까?\n");
+                                for(String s : listNameOfHadSameWord) {
+                                    lists.append(s+" 단어장\n");
+                                }
+                                builder.setMessage(lists.toString());
+                                builder.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        viewModel.insertWord(wordEnglish, callback.get(CallBackKey.KOREAN).trim());
+                                        getData();
+                                    }
+                                });
+                                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                                builder.create().show();
+                            } else {
+                                viewModel.insertWord(wordEnglish, callback.get(CallBackKey.KOREAN).trim());
+                                getData();
+                            }
+
                         }  else {
-                            Toast.makeText(getApplicationContext(), "중복되는 단어가 리스트에 존재합니다", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "중복되는 단어가 단어장에 존재합니다", Toast.LENGTH_LONG).show();
                             return;
                         }
                     }
@@ -95,25 +125,32 @@ public class AddWordActivity extends AppCompatActivity {
             binding.lv.setAdapter(new WordAdapter(new CallBackInAddWordForString() {
                 @Override
                 public void callBack(String str) {
-                    tts.speak(str.trim(),TextToSpeech.QUEUE_FLUSH, null);
+                    tts.speak(str.trim(), TextToSpeech.QUEUE_FLUSH, null);
                 }
             }, new CallBackInAddWordForIndex() {
                 @Override
                 public void callBack(Boolean check, int indexOfValue) {
-                    if(check) {
+                    if (check) {
                         AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddWordActivity.this, new CallBackInAddWordForIndex() {
                             @Override
                             public void callBack(Boolean check, int index) {
-                                if(check) {
-                                    viewModel.deleteWord(((WordAdapter)binding.lv.getAdapter()).getItem(indexOfValue));
+                                if (check) {
+                                    viewModel.deleteWord(((WordAdapter) binding.lv.getAdapter()).getItem(indexOfValue));
                                     Toast.makeText(getApplicationContext(), "삭제되었습니다", Toast.LENGTH_SHORT).show();
                                     getData();
                                 }
                             }
                         });
-                        alertDialog.setMessage(((WordAdapter)binding.lv.getAdapter()).getItem(indexOfValue).english + "\n단어를 삭제 하시겠습니까?");
+                        alertDialog.setMessage(((WordAdapter) binding.lv.getAdapter()).getItem(indexOfValue).english + "\n단어를 삭제 하시겠습니까?");
                         alertDialog.show();
                     }
+                }
+            }, new CallBackCheck() {
+                @Override
+                public void callBack(Boolean check, int index) {
+                    Intent intent = new Intent(getApplicationContext(), WordExplainActivity.class);
+                    intent.putExtra("english",((WordAdapter) binding.lv.getAdapter()).getItem(index).english);
+                    startActivity(intent);
                 }
             }));
         }

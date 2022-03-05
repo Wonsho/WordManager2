@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,7 +17,7 @@ import com.wons.wordmanager2.R;
 import java.util.HashMap;
 
 public class DialogsInAddWord {
-
+    boolean check;
     @SuppressLint("ResourceType")
     public AlertDialog getDialogForAddWord(Context context, CallBackInAddWord callBackInAddWord) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -108,6 +111,25 @@ public class DialogsInAddWord {
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        return builder.create();
+    }
+
+    public AlertDialog getDialogForNotice(Context context, CallBackCheck callBackCheck) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_notice, null);
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        builder.setView(view);
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(checkBox.isChecked()) {
+                    callBackCheck.callBack(true,0);
+                    return;
+                }
+                callBackCheck.callBack(false,0);
             }
         });
         return builder.create();

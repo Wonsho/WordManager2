@@ -6,4 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".add_word.wordinfo.WordExplainActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+    <TextView
+        android:paddingLeft="2dp"
+        android:id="@+id/tv_title"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:text="Word"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@drawable/list_theme"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline6"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/lay"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <EditText
+            android:layout_margin="8dp"
+            android:textSize="15sp"
+            android:hint="메모해주세요"
+            android:background="@color/white"
+            android:id="@+id/et_memo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/t"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@color/white"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text=" Memo "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textSize="13sp"
+        android:text="save >"
+        app:layout_constraintRight_toLeftOf="@id/btn_save"
+        app:layout_constraintTop_toTopOf="@id/btn_save"
+        app:layout_constraintBottom_toBottomOf="@id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:id="@+id/btn_save"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_baseline_save_alt_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

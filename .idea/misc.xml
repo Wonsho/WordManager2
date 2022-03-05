@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/edit_text_in_dialog.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_create_new_folder_24.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_delete_outline_24.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_drive_file_rename_outline_24.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_edit_note_24.xml" value="0.246875" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_expand_circle_down_24.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_folder_open_24.xml" value="0.225" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_keyboard_double_arrow_right_24.xml" value="0.225" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_save_alt_24.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_text_increase_24.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/drawable/ic_baseline_volume_up_24.xml" value="0.26979166666666665" />
@@ -25,15 +29,16 @@
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_study_list.xml" value="0.264" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_test_list.xml" value="0.264" />
-        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_add_word.xml" value="0.264" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/activity_word_explain.xml" value="0.4" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_add_word.xml" value="0.4" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_add_word_list.xml" value="0.4" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_no.xml" value="0.4" />
-        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_notice.xml" value="0.23072916666666668" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_notice.xml" value="0.264" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/dialog_yes.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_in_word_list.xml" value="0.536" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_game.xml" value="0.5750394944707741" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_word.xml" value="0.536" />
-        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_word_folder.xml" value="0.536" />
+        <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/layout/list_view_word_folder.xml" value="0.3285939968404423" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/wono9/AndroidStudioProjects/WordManager2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14583333333333334" />
       </map>

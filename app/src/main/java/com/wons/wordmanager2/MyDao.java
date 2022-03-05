@@ -7,8 +7,10 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.wons.wordmanager2.add_word.value.WordEnglish;
+import com.wons.wordmanager2.add_word.value.WordExplain;
 import com.wons.wordmanager2.add_word.value.WordInfoByEnglish;
 import com.wons.wordmanager2.add_word.value.WordList;
+import com.wons.wordmanager2.setting.Setting;
 
 @Dao
 public interface MyDao{
@@ -18,14 +20,19 @@ public interface MyDao{
     void insertWordList(WordList wordList);
     @Insert
     void insertWordPercentage(WordInfoByEnglish percentageOfCorrect);
+    @Insert
+    void insertSetting(Setting setting);
+    @Insert
+    void insertWordExplain(WordExplain wordExplain);
 
     @Delete
     void deleteWord(WordEnglish wordEnglish);
-
     @Delete
     void deleteWordList(WordList wordList);
     @Delete
     void deleteWordPercentage(WordInfoByEnglish percentageOfCorrect);
+    @Delete
+    void deleteWordExplain(WordExplain wordExplain);
 
     @Update
     void updateWordInfoByEnglish(WordInfoByEnglish percentageOfCorrect);
@@ -33,6 +40,10 @@ public interface MyDao{
     void upDateWord(WordEnglish wordEnglish);
     @Update
     void upDateWordList(WordList wordList);
+    @Update
+    void upDateSetting(Setting setting);
+    @Update
+    void upDateWordExplain(WordExplain wordExplain);
 
     @Query("SELECT * FROM wordlist")
     WordList[] getAllWordList();
@@ -48,5 +59,9 @@ public interface MyDao{
     WordInfoByEnglish getPercentageOfWord(String word_english);
     @Query("SELECT * FROM (SELECT * FROM WordEnglish) WHERE listCode = :listCode")
     WordEnglish[] getWordInList(int listCode);
+    @Query("SELECT * FROM wordexplain WHERE word_english = :word_english")
+    WordExplain getWordExplain(String word_english);
+    @Query("SELECT * FROM setting WHERE settingCode = :settingCode")
+    Setting getSetting(int settingCode);
 
 }

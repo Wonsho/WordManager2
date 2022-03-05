@@ -90,7 +90,7 @@ public class AddListActivity extends AppCompatActivity {
             binding.lv.setAdapter(new WordListAdapter(new CallBackInAddWordForIndex() {
                 @Override
                 public void callBack(Boolean check, int index1) {
-                    AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddListActivity.this,  new CallBackInAddWordForIndex() {
+                    AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddListActivity.this, new CallBackInAddWordForIndex() {
                         @Override
                         public void callBack(Boolean check, int index) {
                             if (check) {
@@ -102,6 +102,12 @@ public class AddListActivity extends AppCompatActivity {
                     });
                     alertDialog.setMessage(((WordListAdapter) binding.lv.getAdapter()).getItem(index1).listName + " 단어장을 삭제하시겠습니까? \n단어장에 저장된 단어는 복구 할 수 없습니다");
                     alertDialog.show();
+                }
+            }, new CallBackInAddWordForIndex() {
+                @Override
+                public void callBack(Boolean check, int index) {
+                   String words =  viewModel.getWordInList(((WordListAdapter) binding.lv.getAdapter()).getItem(index).listName);
+                   Toast.makeText(getApplicationContext(), words, Toast.LENGTH_LONG).show();
                 }
             }));
         }

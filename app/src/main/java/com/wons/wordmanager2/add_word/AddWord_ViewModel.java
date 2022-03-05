@@ -25,14 +25,24 @@ public class AddWord_ViewModel extends ViewModel {
         myDao.upDateWordList(wordList);
     }
 
+    // TODO: 2022-03-06 중복되는 단어장 리스트 보여주고 데이터 덮어씌우거나 뜻 합칠꺼나고 물음 , 취소하면 리스트에 추가 X 
     public void insertWord(WordEnglish wordEnglish, String wordKorean) {
         insertWordInfo(wordEnglish, wordKorean);
         myDao.insertWord(wordEnglish);
         WordList wordList = myDao.getWordListByCode(wordEnglish.listCode);
         wordList.addWordCount();
         myDao.upDateWordList(wordList);
-        Log.e("insertWord", "1");
     }
+
+    public ArrayList<String> checkSameWordImDB(String wordEnglish) {  //todo 리턴값 리스트 이름들
+        ArrayList<String> strArr = new ArrayList<>();
+        ArrayList<WordEnglish> arr = new ArrayList<>(Arrays.asList(myDao.getSameWord(wordEnglish)));
+        for(WordEnglish wordEnglish1 : arr) {
+            strArr.add(myDao.getWordListByCode(wordEnglish1.listCode).listName);
+        }
+        return strArr;
+    }
+
 
     public ArrayList<WordEnglish> getAllWordsInList(String listName) {
         return searchWordByCode(myDao.getWordListByListName(listName).listId);
@@ -54,19 +64,15 @@ public class AddWord_ViewModel extends ViewModel {
         WordInfoByEnglish wordInfoByEnglish = new WordInfoByEnglish(wordEnglish.english, wordKorean);
         if (myDao.getPercentageOfWord(wordEnglish.english) == null) {
             myDao.insertWordPercentage(wordInfoByEnglish);
-        } else {
-            if(!myDao.getPercentageOfWord(wordEnglish.english).word_korean.equals(wordKorean)) {
-                //todo 여기서 덮어 씌울껀지 제어
-                myDao.updateWordInfoByEnglish(wordInfoByEnglish);
-            }
         }
     }
 
     private void deleteWordInfo(WordEnglish wordEnglish) {
         if (myDao.getSameWord(wordEnglish.english).length == 1) {
-            myDao.deleteWordPercentage(myDao.getPercentageOfWord(wordEnglish.english));
-        } else {
-            return;
+            if (myDao.getWordExplain(wordEnglish.english) != null) {
+                myDao.deleteWordExplain(myDao.getWordExplain(wordEnglish.english));
+            } myDao.deleteWordPercentage(myDao.getPercentageOfWord(wordEnglish.english));
+
         }
     }
 
@@ -86,14 +92,18 @@ public class AddWord_ViewModel extends ViewModel {
         return map;
     }
 
+    public WordList getWordListByName(String listName) {
+        return myDao.getWordListByListName(listName);
+    }
+
     public boolean isCheckSameWordInList(int listCode, String english) {
-       ArrayList<WordEnglish> arr = new ArrayList<>(Arrays.asList(myDao.getWordInList(listCode)));
-       for(WordEnglish word : arr) {
-           if(word.english.trim().equals(english.trim())) {
-               return true;
-           }
-       }
-       return false;
+        ArrayList<WordEnglish> arr = new ArrayList<>(Arrays.asList(myDao.getWordInList(listCode)));
+        for (WordEnglish word : arr) {
+            if (word.english.trim().equals(english.trim())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
