@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.wons.wordmanager2.R;
 import com.wons.wordmanager2.add_word.adapter.WordAdapter;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWord;
-import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
+import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForIndex;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForString;
 import com.wons.wordmanager2.add_word.diaog.CallBackKey;
 import com.wons.wordmanager2.add_word.diaog.DialogsInAddWord;
@@ -97,11 +97,11 @@ public class AddWordActivity extends AppCompatActivity {
                 public void callBack(String str) {
                     tts.speak(str.trim(),TextToSpeech.QUEUE_FLUSH, null);
                 }
-            }, new CallBackInAddWordForBoolean() {
+            }, new CallBackInAddWordForIndex() {
                 @Override
                 public void callBack(Boolean check, int indexOfValue) {
                     if(check) {
-                        AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddWordActivity.this, new CallBackInAddWordForBoolean() {
+                        AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddWordActivity.this, new CallBackInAddWordForIndex() {
                             @Override
                             public void callBack(Boolean check, int index) {
                                 if(check) {

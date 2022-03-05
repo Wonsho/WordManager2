@@ -4,13 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wons.wordmanager2.R;
@@ -25,48 +21,6 @@ public class DialogsInAddWord {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_add_word, null);
         EditText et_english = view.findViewById(R.id.et_english);
         EditText et_korean = view.findViewById(R.id.et_korean);
-        Button btn_hyung = view.findViewById(R.id.btn_hyung);
-        Button btn_busa = view.findViewById(R.id.btn_busa);
-        Button btn_myung = view.findViewById(R.id.btn_myung);
-        Button btn_marker = view.findViewById(R.id.btn_marker);
-        Button btn_dong = view.findViewById(R.id.btn_dong);
-
-        btn_dong.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View view) {
-                et_korean.setText(et_korean.getText().toString() + "동) ");
-                et_korean.setSelection(et_korean.getText().toString().length());
-            }
-        });
-        btn_marker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                et_korean.setText(et_korean.getText().toString() + ", ");
-                et_korean.setSelection(et_korean.getText().toString().length());
-            }
-        });
-        btn_myung.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                et_korean.setText(et_korean.getText().toString() + "명) ");
-                et_korean.setSelection(et_korean.getText().toString().length());
-            }
-        });
-        btn_busa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                et_korean.setText(et_korean.getText().toString() + "부) ");
-                et_korean.setSelection(et_korean.getText().toString().length());
-            }
-        });
-        btn_hyung.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                et_korean.setText(et_korean.getText().toString() + "형) ");
-                et_korean.setSelection(et_korean.getText().toString().length());
-            }
-        });
 
         builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
@@ -142,7 +96,7 @@ public class DialogsInAddWord {
         return builder.create();
     }
 
-    public AlertDialog dialogForDelete(Context context, CallBackInAddWordForBoolean callBack) {
+    public AlertDialog dialogForDelete(Context context, CallBackInAddWordForIndex callBack) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("삭제");
         builder.setPositiveButton("삭제", new DialogInterface.OnClickListener() {

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WordManager2">
         <activity
+            android:name=".add_word.wordinfo.WordExplainActivity"
+            android:exported="true" />
+        <activity
             android:name=".add_word.AddWordActivity"
             android:exported="true" />
         <activity

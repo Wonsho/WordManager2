@@ -11,10 +11,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.wons.wordmanager2.R;
 import com.wons.wordmanager2.add_word.adapter.WordListAdapter;
 import com.wons.wordmanager2.add_word.diaog.CallBackInAddWord;
-import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
+import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForIndex;
 import com.wons.wordmanager2.add_word.diaog.CallBackKey;
 import com.wons.wordmanager2.add_word.diaog.DialogsInAddWord;
 import com.wons.wordmanager2.add_word.value.WordList;
@@ -88,10 +87,10 @@ public class AddListActivity extends AppCompatActivity {
 
     private void setView() {
         if (binding.lv.getAdapter() == null) {
-            binding.lv.setAdapter(new WordListAdapter(new CallBackInAddWordForBoolean() {
+            binding.lv.setAdapter(new WordListAdapter(new CallBackInAddWordForIndex() {
                 @Override
                 public void callBack(Boolean check, int index1) {
-                    AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddListActivity.this,  new CallBackInAddWordForBoolean() {
+                    AlertDialog alertDialog = new DialogsInAddWord().dialogForDelete(AddListActivity.this,  new CallBackInAddWordForIndex() {
                         @Override
                         public void callBack(Boolean check, int index) {
                             if (check) {

@@ -8,15 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wons.wordmanager2.R;
-import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForBoolean;
+import com.wons.wordmanager2.add_word.diaog.CallBackInAddWordForIndex;
 import com.wons.wordmanager2.add_word.value.WordList;
 
 import java.util.ArrayList;
 
 public class WordListAdapter extends BaseAdapter {
     private ArrayList<WordList> wordLists;
-    private CallBackInAddWordForBoolean callback;
-    public WordListAdapter(CallBackInAddWordForBoolean callback) {
+    private CallBackInAddWordForIndex callback;
+    public WordListAdapter(CallBackInAddWordForIndex callback) {
         this.callback = callback;
         wordLists = new ArrayList<>();
     }
