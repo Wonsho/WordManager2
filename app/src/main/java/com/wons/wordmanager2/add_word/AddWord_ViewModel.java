@@ -28,6 +28,12 @@ public class AddWord_ViewModel extends ViewModel {
     // TODO: 2022-03-06 중복되는 단어장 리스트 보여주고 데이터 덮어씌우거나 뜻 합칠꺼나고 물음 , 취소하면 리스트에 추가 X 
     public void insertWord(WordEnglish wordEnglish, String wordKorean) {
         insertWordInfo(wordEnglish, wordKorean);
+        if(myDao.getSameWord(wordEnglish.english).length != 0) {
+            ArrayList<WordEnglish> wordEnglishes = new ArrayList<>(Arrays.asList(myDao.getSameWord(wordEnglish.english)));
+            boolean check = wordEnglishes.get(0).checkHasExplain;
+            Log.e("insert", "passed");
+            wordEnglish.checkHasExplain = check;
+        }
         myDao.insertWord(wordEnglish);
         WordList wordList = myDao.getWordListByCode(wordEnglish.listCode);
         wordList.addWordCount();

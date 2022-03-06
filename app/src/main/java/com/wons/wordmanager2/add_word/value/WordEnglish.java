@@ -12,11 +12,12 @@ public class WordEnglish {
     @NonNull
     public int wordId;
     public String english;
+    public boolean checkHasExplain;
     public int listCode;
 
     public WordEnglish(String english, int listCode) {
         this.english = english;
         this.listCode = listCode;
-
+        checkHasExplain = false;
     }
 }

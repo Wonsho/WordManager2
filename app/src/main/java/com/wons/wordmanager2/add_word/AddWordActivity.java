@@ -162,4 +162,10 @@ public class AddWordActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.non,R.anim.vertical_exit);
     }
+
+    @Override
+    protected void onRestart() {
+        getData();
+        super.onRestart();
+    }
 }

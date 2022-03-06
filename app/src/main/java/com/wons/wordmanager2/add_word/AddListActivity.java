@@ -64,7 +64,6 @@ public class AddListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), AddWordActivity.class);
                 intent.putExtra("listName",((WordListAdapter) binding.lv.getAdapter()).getItem(i).listName);
-                Log.e("clickLv", String.valueOf(i));
                 startActivity(intent);
 
             }

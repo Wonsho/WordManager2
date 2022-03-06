@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.wons.wordmanager2.MainViewModel;
 import com.wons.wordmanager2.MyDao;
+import com.wons.wordmanager2.add_word.value.WordEnglish;
 import com.wons.wordmanager2.add_word.value.WordExplain;
 import com.wons.wordmanager2.setting.Setting;
 import com.wons.wordmanager2.setting.SettingCode;
@@ -35,6 +36,19 @@ public class WordExPlain_ViewModel extends ViewModel {
             dao.insertWordExplain(new WordExplain(english, str));
         } else {
             dao.upDateWordExplain(new WordExplain(english, str));
+        }
+        WordEnglish[] wordEnglishes = dao.getSameWord(english);
+        for(WordEnglish wordEnglish : wordEnglishes) {
+            wordEnglish.checkHasExplain = true;
+            dao.upDateWord(wordEnglish);
+        }
+    }
+
+    public void deleteExplain(String english)  {
+        WordEnglish[] wordEnglishes = dao.getSameWord(english);
+        for(WordEnglish wordEnglish : wordEnglishes) {
+            wordEnglish.checkHasExplain = false;
+            dao.upDateWord(wordEnglish);
         }
     }
 }

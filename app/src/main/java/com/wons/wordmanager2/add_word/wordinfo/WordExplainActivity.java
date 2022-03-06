@@ -45,10 +45,17 @@ public class WordExplainActivity extends AppCompatActivity {
         }
         showSoftKeyboard();
         setExPlainView();
+        binding.etMemo.setSelection(binding.etMemo.getText().toString().length());
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveExplain();
+            }
+        });
+        binding.lay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSoftKeyboard();
             }
         });
     }
@@ -78,9 +85,12 @@ public class WordExplainActivity extends AppCompatActivity {
     }
 
     private void saveExplain() {
-            viewModel.saveExplain(getIntent().getStringExtra("english"), binding.etMemo.getText().toString());
-            Toast.makeText(getApplicationContext(), "저장되었습니다", Toast.LENGTH_SHORT).show();
-            finish();
+        viewModel.saveExplain(getIntent().getStringExtra("english"), binding.etMemo.getText().toString().trim());
+        if (binding.etMemo.getText().toString().trim().isEmpty()) {
+            viewModel.deleteExplain(getIntent().getStringExtra("english"));
+        }
+        Toast.makeText(getApplicationContext(), "저장되었습니다", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
@@ -98,7 +108,7 @@ public class WordExplainActivity extends AppCompatActivity {
             return;
         }
         if (strInMemo.isEmpty() && (viewModel.getWordExplain(getIntent().getStringExtra("english")) == null || viewModel.getWordExplain(getIntent().getStringExtra("english")).isEmpty())) {
-           finish();
+            finish();
             return;
         }
 
@@ -111,21 +121,30 @@ public class WordExplainActivity extends AppCompatActivity {
     }
 
     public void showCheck() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(WordExplainActivity.this);
-            builder.setTitle("주의");
-            builder.setMessage("수정 사항이 있습니다 \n나가시겠습니까? \n나가면 수정사항은 저장되지 않습니다");
-            builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    finish();
-                }
-            });
-            builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    showSoftKeyboard();
-                }
-            });
-            builder.create().show();
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(WordExplainActivity.this);
+        builder.setTitle("알림");
+        builder.setMessage("수정 사항이 있습니다 \n저장 후 나가시겠습니까?");
+        builder.setPositiveButton("저장후 나가기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                saveExplain();
+                finish();
+            }
+        });
+        builder.setNegativeButton("저장 없이 나가기", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        builder.create().show();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        binding.etMemo.requestFocus();
+        showSoftKeyboard();
+
+    }
+}

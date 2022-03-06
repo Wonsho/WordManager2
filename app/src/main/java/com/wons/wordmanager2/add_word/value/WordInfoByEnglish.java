@@ -15,12 +15,6 @@ public class WordInfoByEnglish {
 
     public WordInfoByEnglish(String word_english, String word_korean) {
         this.word_english = word_english;
-
-        if (word_korean.contains("형)") || word_korean.contains("명)") || word_korean.contains("부)")) {
-            String[] arr1 = word_korean.split(",");
-        } else {
-            String[] arr2 = word_korean.split(",");
-        }
         this.word_korean = word_korean;
         correctCount = "0";
         testedCount = "0";

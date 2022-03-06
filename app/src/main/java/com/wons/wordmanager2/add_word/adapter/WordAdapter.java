@@ -95,6 +95,13 @@ public class WordAdapter extends BaseAdapter {
                 callBackCheck.callBack(true, i);
             }
         });
+        if(wordEnglishes.get(i).checkHasExplain) {
+
+
+            btn_explain.setImageResource(R.drawable.ic_baseline_playlist_add_check_24);
+        } else {
+            btn_explain.setImageResource(R.drawable.ic_baseline_playlist_add_24);
+        }
         int percentage = Integer.parseInt(wordsPercentage.get(wordEnglishes.get(i).english));
         if (percentage != 0) {
             if (percentage >= 0 && percentage <= 10) {

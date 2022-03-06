@@ -48,6 +48,7 @@ public class WordListAdapter extends BaseAdapter {
         ImageView btn_delete = view.findViewById(R.id.btn_delete);
         ImageView btn_info = view.findViewById(R.id.btn_searchWord);
         ImageView tv = view.findViewById(R.id.im_q);
+        TextView tv1 = view.findViewById(R.id.tv_text);
 
         tv_listName.setText(wordLists.get(i).listName);
         tv_wordCountInList.setText(wordLists.get(i).getWordCountInList());
@@ -55,10 +56,12 @@ public class WordListAdapter extends BaseAdapter {
             view.findViewById(R.id.tv_infoList).setVisibility(View.GONE);
             btn_info.setVisibility(View.VISIBLE);
             tv.setVisibility(View.VISIBLE);
+            tv1.setVisibility(View.VISIBLE);
         } else {
             view.findViewById(R.id.tv_infoList).setVisibility(View.VISIBLE);
             btn_info.setVisibility(View.GONE);
             tv.setVisibility(View.GONE);
+            tv1.setVisibility(View.GONE);
         }
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
